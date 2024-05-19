@@ -1,0 +1,34 @@
+version: '3.9'
+
+volumes:
+  mysql_data: {}
+
+  apache_logs: 
+    driver: local 
+    driver_opts:
+      type: none
+      o: bind
+      device: /var/log/apache2
+
+services:
+  mysql:
+    image: mysql:latest
+    volumes:
+      - /home/ubuntu/mysql_data:/var/lib/mysql
+    ports:
+     - "3306:3306"  
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: projeto
+      MYSQL_USER: projeto
+      MYSQL_PASSWORD: projeto
+
+  web:
+    image: gabrielfkoerich/techchallenge:latest
+    ports:
+      - "80:80"
+    restart: always
+
+    volumes:
+      - apache_logs:/var/log/apache2 
