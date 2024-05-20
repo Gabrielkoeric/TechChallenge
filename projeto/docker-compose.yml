@@ -25,10 +25,17 @@ services:
       MYSQL_PASSWORD: projeto
 
   web:
-    image: gabrielfkoerich/techchallenge:latest
+    image: gabrielfkoerich/techchallenge:1.1
     ports:
       - "80:80"
     restart: always
-
+    depends_on:
+      - mysql
     volumes:
       - apache_logs:/var/log/apache2 
+
+    environment:
+      - DB_HOST=mysql
+      - DB_DATABASE=projeto
+      - DB_USERNAME=projeto
+      - DB_PASSWORD=projeto
