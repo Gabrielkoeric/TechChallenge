@@ -11,10 +11,10 @@ WORKDIR /var/www
 
 RUN git clone https://github.com/Gabrielkoeric/TechChallenge.git
 
-RUN cp /var/www/TechChallenge/projeto/.env.example /var/www/TechChallenge/projeto/.env
+RUN cp /var/www/TechChallenge/.env.example /var/www/TechChallenge/.env
 
-RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/TechChallenge/projeto/public|' /etc/apache2/sites-available/000-default.conf
-RUN sed -i 's|<Directory /var/www/html>|<Directory /var/www/TechChallenge/projeto/public>|' /etc/apache2/apache2.conf
+RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/TechChallenge/public|' /etc/apache2/sites-available/000-default.conf
+RUN sed -i 's|<Directory /var/www/html>|<Directory /var/www/TechChallenge/public>|' /etc/apache2/apache2.conf
 
 WORKDIR /var/www/TechChallenge/projeto
 
@@ -22,7 +22,7 @@ RUN composer install --no-dev --optimize-autoloader
 
 RUN php artisan key:generate --force
 
-RUN chown -R www-data:www-data /var/www/TechChallenge/projeto/storage /var/www/TechChallenge/projeto/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/TechChallenge/storage /var/www/TechChallenge/bootstrap/cache
 
 RUN a2enmod rewrite
 
