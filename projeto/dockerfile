@@ -22,9 +22,6 @@ RUN composer install --no-dev --optimize-autoloader
 
 RUN php artisan key:generate --force
 
-RUN composer require "darkaonline/l5-swagger" && \
-    php artisan vendor:publish --provider="L5Swagger\L5SwaggerServiceProvider"
-
 RUN chown -R www-data:www-data /var/www/TechChallenge/projeto/storage /var/www/TechChallenge/projeto/bootstrap/cache
 
 RUN a2enmod rewrite
