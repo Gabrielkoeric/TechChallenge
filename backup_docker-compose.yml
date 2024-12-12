@@ -2,21 +2,19 @@ version: '3.9'
 
 volumes:
   mysql_data: {}
+
   apache_logs: 
     driver: local 
     driver_opts:
       type: none
       o: bind
-      #para windows
-      device: C:\apache_logs
-      #para linux
-      #device: /var/log/apache2
+      device: /var/log/apache2
 
 services:
   mysql:
     image: mysql:latest
     volumes:
-      - mysql_data:/var/lib/mysql
+      - /home/ubuntu/mysql_data:/var/lib/mysql
     ports:
      - "3306:3306"  
     restart: always
@@ -25,27 +23,19 @@ services:
       MYSQL_DATABASE: projeto
       MYSQL_USER: projeto
       MYSQL_PASSWORD: projeto
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "--silent"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
   web:
-    image: gabrielfkoerich/techchallenge:latest
+    image: gabrielfkoerich/techchallenge:1.3
     ports:
       - "80:80"
     restart: always
     depends_on:
       - mysql
     volumes:
-      #para windows
-      - C:\\apache_logs:/var/log/apache2
-      #para linux
-      #- apache_logs:/var/log/apache2
+      - apache_logs:/var/log/apache2 
+
     environment:
       - DB_HOST=mysql
-      - DB_PORT=3306
       - DB_DATABASE=projeto
       - DB_USERNAME=projeto
       - DB_PASSWORD=projeto
