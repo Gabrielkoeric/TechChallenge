@@ -6,6 +6,38 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/cliente": {
+            "post": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Cadastrar um cliente",
+                "description": "Cadastra um novo cliente no sistema",
+                "operationId": "createCliente",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Cliente"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Cliente cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cliente"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/users": {
             "get": {
                 "tags": [
@@ -34,6 +66,29 @@
     },
     "components": {
         "schemas": {
+            "Cliente": {
+                "title": "Cliente",
+                "description": "Esquema do cliente para a API",
+                "required": [
+                    "cpf",
+                    "nome"
+                ],
+                "properties": {
+                    "id_cliente": {
+                        "description": "ID único do cliente",
+                        "type": "integer"
+                    },
+                    "cpf": {
+                        "description": "CPF do cliente",
+                        "type": "string"
+                    },
+                    "nome": {
+                        "description": "Nome completo do cliente",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "User": {
                 "title": "User",
                 "required": [
