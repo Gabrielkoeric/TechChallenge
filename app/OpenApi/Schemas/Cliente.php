@@ -14,7 +14,8 @@ use OpenApi\Annotations as OA;
  *     @OA\Property(
  *         property="id_cliente",
  *         type="integer",
- *         description="ID único do cliente"
+ *         description="ID único do cliente",
+ *         nullable=true
  *     ),
  *     @OA\Property(
  *         property="cpf",
@@ -31,4 +32,3 @@ use OpenApi\Annotations as OA;
 class Cliente
 {
 }
-

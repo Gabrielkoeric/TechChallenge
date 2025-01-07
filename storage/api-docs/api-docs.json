@@ -76,7 +76,8 @@
                 "properties": {
                     "id_cliente": {
                         "description": "ID único do cliente",
-                        "type": "integer"
+                        "type": "integer",
+                        "nullable": true
                     },
                     "cpf": {
                         "description": "CPF do cliente",
