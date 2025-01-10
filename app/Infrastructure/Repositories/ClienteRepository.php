@@ -14,9 +14,29 @@ class ClienteRepository implements ClienteRepositoryInterface
 
         return new Cliente(
             $clienteModel->id_cliente,
-            $clienteModel->cpf,
-            $clienteModel->nome
+            $clienteModel->nome,
+            $clienteModel->cpf
+        );
+    }
+
+    /**
+     * Consulta um cliente pelo CPF.
+     *
+     * @param string $cpf
+     * @return Cliente|null
+     */
+    public function findByCpf(string $cpf): ?Cliente
+    {
+        $clienteModel = ClienteModel::where('cpf', $cpf)->first();
+
+        if (!$clienteModel) {
+            return null;
+        }
+
+        return new Cliente(
+            $clienteModel->id_cliente,
+            $clienteModel->nome,
+            $clienteModel->cpf
         );
     }
 }
-
