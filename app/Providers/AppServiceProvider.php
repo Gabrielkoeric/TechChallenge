@@ -18,6 +18,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryInterface::class, EloquentUserRepository::class);
         $this->app->bind(ClienteRepositoryInterface::class, ClienteRepository::class);
+        $this->app->bind(
+            \App\Domain\Repositories\ProdutoRepositoryInterface::class,
+            \App\Infrastructure\Repositories\ProdutoRepository::class
+        );
     }
 
     /**

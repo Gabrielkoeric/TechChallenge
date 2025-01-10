@@ -74,6 +74,188 @@
                 }
             }
         },
+        "/api/produtos": {
+            "post": {
+                "tags": [
+                    "Produto"
+                ],
+                "summary": "Criar Produto",
+                "description": "Cria um novo produto",
+                "operationId": "createProduto",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nome",
+                                    "id_categoria",
+                                    "valor"
+                                ],
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "Produto Exemplo"
+                                    },
+                                    "id_categoria": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "valor": {
+                                        "type": "string",
+                                        "example": "100.50"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Produto criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id_produto": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "nome": {
+                                            "type": "string",
+                                            "example": "Produto Exemplo"
+                                        },
+                                        "id_categoria": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "valor": {
+                                            "type": "string",
+                                            "example": "100.50"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            }
+        },
+        "/api/produtos/{id_produto}": {
+            "put": {
+                "tags": [
+                    "Produto"
+                ],
+                "summary": "Editar Produto",
+                "description": "Atualiza um produto existente",
+                "operationId": "updateProduto",
+                "parameters": [
+                    {
+                        "name": "id_produto",
+                        "in": "path",
+                        "description": "ID do produto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nome",
+                                    "id_categoria",
+                                    "valor"
+                                ],
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "Produto Atualizado"
+                                    },
+                                    "id_categoria": {
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "valor": {
+                                        "type": "string",
+                                        "example": "150.75"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Produto atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id_produto": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "nome": {
+                                            "type": "string",
+                                            "example": "Produto Atualizado"
+                                        },
+                                        "id_categoria": {
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "valor": {
+                                            "type": "string",
+                                            "example": "150.75"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Produto"
+                ],
+                "summary": "Remover Produto",
+                "description": "Remove um produto existente",
+                "operationId": "deleteProduto",
+                "parameters": [
+                    {
+                        "name": "id_produto",
+                        "in": "path",
+                        "description": "ID do produto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Produto removido com sucesso"
+                    },
+                    "404": {
+                        "description": "Produto não encontrado"
+                    }
+                }
+            }
+        },
         "/api/users": {
             "get": {
                 "tags": [

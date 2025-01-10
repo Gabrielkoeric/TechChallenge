@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\ClienteConsultaController;
+use App\Http\Controllers\Api\ProdutoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,8 @@ Route::get('/users', [UserController::class, 'index']);
 Route::post('/cliente', [ClienteController::class, 'store']);
 //consulta de usuario por cpf
 Route::get('/clientes/{cpf}', [ClienteConsultaController::class, 'consultarPorCpf']);
+//inserção, alteração e exclusão de produto
+Route::post('produtos', [ProdutoController::class, 'create']);
+Route::put('produtos/{id_produto}', [ProdutoController::class, 'update']);
+Route::delete('produtos/{id_produto}', [ProdutoController::class, 'delete']);
+
